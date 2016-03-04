@@ -1,9 +1,9 @@
 $(document).ready(function () {
-    var teamNumber = "62";
+    var teamNumber = "1104Z";
     var mySKU;
     var competingCurrently = true;
     $.ajax({
-        url: 'http://api.vex.us.nallen.me/get_teams?team=' + teamNumber,
+        url: 'http://api.vexdb.io/get_teams?team=' + teamNumber,
         dataType: 'json',
         success: function (jd) {
             $('#title').append('<p>Team ' + teamNumber + ', ' + jd.result[0].team_name + '</p>');
@@ -11,7 +11,7 @@ $(document).ready(function () {
         async: false,
     });
     $.ajax({
-        url: 'http://api.vex.us.nallen.me/get_events?team=' + teamNumber + '&status=current',
+        url: 'http://api.vexdb.io/get_events?team=' + teamNumber + '&status=current',
         dataType: 'json',
         success: function (jd) {
             if (jd.size == 0) {
@@ -20,25 +20,25 @@ $(document).ready(function () {
             } else {
                 $('#status').append('<p>' + jd.result[0].name + '</p>');
                 mySKU = jd.result[0].sku;
-                $('#sku').append(mySKU+': <a href=http://www.robotevents.com/'+mySKU+'.html>RobotEvents</a>, <a href=http://vex.us.nallen.me/events/view/'+mySKU+'>VexDB</a>');
+                $('#sku').append(mySKU+': <a href=http://www.robotevents.com/'+mySKU+'.html>RobotEvents</a>, <a href=http://vexdb.io/events/view/'+mySKU+'>VexDB</a>');
             }
         },
         async: false,
     });
     if(!competingCurrently) {
         $.ajax({
-            url: 'http://api.vex.us.nallen.me/get_events?team=' + teamNumber + '&status=past',
+            url: 'http://api.vexdb.io/get_events?team=' + teamNumber + '&status=past',
             dataType: 'json',
             success: function (jd) {
                 $('#status').append('<p>' + jd.result[0].name + '</p>');
                 mySKU = jd.result[0].sku;
-                $('#sku').append('<br>'+mySKU+': <a href=http://www.robotevents.com/'+mySKU+'.html>RobotEvents</a>, <a href=http://vex.us.nallen.me/events/view/'+mySKU+'>VexDB</a>');
+                $('#sku').append('<br>'+mySKU+': <a href=http://www.robotevents.com/'+mySKU+'.html>RobotEvents</a>, <a href=http://vexdb.io/events/view/'+mySKU+'>VexDB</a>');
             },
             async: false,
         });
     }
     $.ajax({
-        url: ('http://api.vex.us.nallen.me/get_matches?team='+teamNumber+'&sku=' + mySKU),
+        url: ('http://api.vexdb.io/get_matches?team='+teamNumber+'&sku=' + mySKU),
         dataType: 'json',
         success: function (jd) {
           for (i = 0; i < jd.size; i++) {
