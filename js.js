@@ -149,7 +149,7 @@ $(document).ready(function () {
         async: false,
     });
     $.ajax({
-        url: ('http://api.vex.us.nallen.me/get_matches?sku=' + mySKU),
+        url: ('http://api.vexdb.io/get_matches?sku=' + mySKU),
         dataType: 'json',
         success: function (jd) {
             for (i = 0; i < jd.length; i++) {
@@ -163,7 +163,7 @@ $(document).ready(function () {
         }
     });
     $.ajax({
-        url: 'http://api.vex.us.nallen.me/get_rankings?sku=' + mySKU,
+        url: 'http://api.vexdb.io/get_rankings?sku=' + mySKU,
         dataType: 'json',
         success: function (jd) {
             for (i = 0; i < 3; i++) {
@@ -177,7 +177,7 @@ $(document).ready(function () {
         async: false,
     });
     $.ajax({
-        url: 'http://api.vex.us.nallen.me/get_rankings?team='+teamNumber+'&sku='+mySKU,
+        url: 'http://api.vexdb.io/get_rankings?team='+teamNumber+'&sku='+mySKU,
         dataType: 'json',
         success: function (jd) {
             $('#us').append('<td>-</td>');
